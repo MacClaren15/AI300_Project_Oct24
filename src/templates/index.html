@@ -1,47 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Predict Insurance Charges</title>
+    <title>Predict Telecom User Churned Status</title>
 </head>
 <body>
     <div>
-        <h1>Predict Insurance Charges</h1>
+        <h1>Predict Telecom User Churned Status</h1>
         <form method="POST">
             <label for="age">Age:</label><br>
-            <input type="text" id="age" name="age" value="30"><br><br>
+            <input type="text" id="age" name="age" value="24"><br><br>
 
-            <label for="sex">Sex:</label><br>
-                <select name="sex" id="sex">
+            <label for="gender">Gender:</label><br>
+                <select name="gender" id="gender">
                 <option value=""></option>
-                <option value="male">Male</option>
-                <option value="female" selected>Female</option>
+                <option value="1">Male</option>
+                <option value="0" selected>Female</option>
             </select><br><br>
 
-            <label for="bmi">TODO 1 - BMI:</label><br>
-            <!-- Fill in BMI text field here, similar to Age -->
-            <br><br>
-
-            <label for="children">Children:</label><br>
-            <select name="children" id="children">
+            <label for="married">Married:</label><br>
+                <select name="married" id="married">
                 <option value=""></option>
-                <option value="1" selected>1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5 or more</option>
+                <option value="1" selected>Yes</option>
+                <option value="0">No</option>
             </select><br><br>
 
-            <label for="smoker">TODO 2 - Smoker:</label><br>
-            <!-- Fill in smoker select/dropdown field here, similar to Sex -->
-            <br><br>
-
-            <label for="region">Region:</label><br>
-            <select name="region" id="region">
+              <label for="senior_citizen">Senior Citizen:</label><br>
+                <select name="senior_citizen" id="senior_citizen">
                 <option value=""></option>
-                <option value="southwest" selected>Southwest</option>
-                <option value="southeast">Southeast</option>
-                <option value="northwest">Northwest</option>
-                <option value="northeast">Northeast</option>
+                <option value="1" selected>Yes</option>
+                <option value="0">No</option>
+            </select><br><br>
+
+            <label for="has_internet_service">Internet Service:</label><br>
+                <select name="has_internet_service" id="has_internet_service">
+                <option value=""></option>
+                <option value="1" selected>Yes</option>
+                <option value="0">No</option>
+            </select><br><br>
+
+            <label for="internet_type">Internet Type:</label><br>
+                <select name="internet_type" id="internet_type">
+                <option value=""></option>
+                <option value="0">Cable</option>
+                <option value="1">DSL</option>
+                <option value="2" selected>Fiber Optic</option>
+                <option value="3">None</option>
+            </select><br><br>
+
+            <label for="has_unlimited_data">Unlimited Data:</label><br>
+                <select name="has_unlimited_data" id="has_unlimited_data">
+                <option value=""></option>
+                <option value="1" selected>Yes</option>
+                <option value="0">No</option>
+            </select><br><br>
+
+            <label for="has_multiple_lines">Hold Muliple Lines:</label><br>
+                <select name="has_multiple_lines" id="has_multiple_lines">
+                <option value=""></option>
+                <option value="1" selected>Yes</option>
+                <option value="0">No</option>
+            </select><br><br>
+
+            <label for="contract_type">Contract Type:</label><br>
+            <select name="contract_type" id="contract_type">
+                <option value=""></option>
+                <option value="0">Month to Month</option>
+                <option value="1">One Year</option>
+                <option value="2" selected>Two Year</option>
             </select><br><br>
             
             <input type="submit" value="Predict">
@@ -49,7 +74,9 @@
 
         <!-- TODO 3: Add h2 element to display model prediction  -->
         <!--         (Use Jinja templating with if condition)    -->
-
+        {% if prediction is defined %}
+	          <h2>Predicted Churn Status: {{ prediction }}</h2>
+	    {% endif %}
     </div>
 </body>
 </html>

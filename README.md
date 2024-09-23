@@ -1,6 +1,6 @@
-# Lesson 6 Template: Insurance Claims Prediction
+# AI300_Capstone : Telecom Churn Prediction
 
-Simple Flask template for ML model predictions via (1) HTML Form (2) API requests.
+Simple Flask template for ML model predictions via (1) HTML Form (2) API requests to predict the probabilities of customer telecom churned result
 
 ## About This Repo
 
@@ -9,4 +9,4 @@ Simple Flask template for ML model predictions via (1) HTML Form (2) API request
 
 ## Acknowledgements
 
-Dataset Source: Machine Learning with R by Brett Lantz ([codebase](https://github.com/stedy/Machine-Learning-with-R-datasets)|[book](https://www.packtpub.com/product/machine-learning-with-r-third-edition/9781788295864))
+Dataset Source: Heicoder - ai300_capstone
