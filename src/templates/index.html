@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Predict Telecom User Churned Status</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
 </head>
 <body>
     <div>
@@ -72,8 +74,11 @@
             <input type="submit" value="Predict">
         </form>
 
-        <!-- TODO 3: Add h2 element to display model prediction  -->
-        <!--         (Use Jinja templating with if condition)    -->
+        {% if errors %}
+            <p>Errors: {{ errors }}</p>
+        {% endif %}
+
+    
         {% if prediction is defined %}
 	          <h2>Predicted Churn Status: {{ prediction }}</h2>
 	    {% endif %}

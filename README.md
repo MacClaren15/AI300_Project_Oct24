@@ -7,6 +7,16 @@ Simple Flask template for ML model predictions via (1) HTML Form (2) API request
 - Package dependencies can be found in `requirements.txt` file.
 - Command to start Flask app: `python src/app.py`
 
+- Screenshot image of the web UI can be found in Img Folder
+
+- ML model applied will be RandomForest Classifier under model folder ----> rf_auc_score.pkl
+
+- Github repository to pull is under the address https://github.com/Heicoders-AI300/aug24-p09.git
+
+
+
 ## Acknowledgements
 
-Dataset Source: Heicoder - ai300_capstone
+Dataset Source: Heicoder - ai300_capstone converted to joined table combined csv file under data folder ---> ai300_capstone_df.csv
+
+
