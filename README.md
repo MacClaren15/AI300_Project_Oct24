@@ -13,7 +13,9 @@ Simple Flask template for ML model predictions via (1) HTML Form (2) API request
 
 - Github repository to pull is under the address https://github.com/Heicoders-AI300/aug24-p09.git
 
-
+- AWS Web interface address will be as follow (Public)
+1) 
+2) 
 
 ## Acknowledgements
 
