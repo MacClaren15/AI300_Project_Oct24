@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template
+from input_processing import validate, format_model_inputs
 from model import Model
 
 app = Flask(__name__)
@@ -8,32 +9,49 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
-        form_input = dict(request.form)
-        age = int(form_input['age'])
-        gender = form_input['gender']
-        married = form_input['married']
-        senior_citizen = form_input['senior_citizen']
-        has_internet_service = form_input['has_internet_service']
-        internet_type = form_input['internet_type']
-        has_unlimited_data = form_input['has_unlimited_data']
-        has_multiple_lines = form_input['has_multiple_lines']
-        contract_type = form_input['contract_type']
+        form_input = dict(request.form)  # optional: print form_input as log
+        errors = validate(form_input)
+        if len(errors) > 0:
+            return render_template('index.html', errors=errors)
 
-        model_inputs = [age, gender, married, senior_citizen, has_internet_service, internet_type, has_unlimited_data, has_multiple_lines, contract_type]
+        model_inputs = format_model_inputs(form_input)
         prediction = Model().predict(model_inputs)
-        return render_template('index.html', prediction=prediction)
+
+        # Source: https://pencilprogrammer.com/format-currency-python/
+        formatted_pred = "${:,.2f}".format(prediction)
+        return render_template('index.html', prediction=formatted_pred)
 
     return render_template('index.html')
 
+# Method 2: Via POST API (one prediction at a time)
+@app.route('/api/predict_one', methods=['POST'])
+def predict_one():
+    request_data = request.get_json()  # optional: print request_data as log
+    errors = validate(request_data)
+    if len(errors) > 0:
+        return {'errors': errors}, 400
 
-# Method 2: Via POST API
+    model_inputs = format_model_inputs(request_data)
+    prediction = Model().predict(model_inputs)
+    return {'prediction': prediction}
+
+
+# Method 2: Via POST API (many predictions at a time)
 @app.route('/api/predict', methods=['POST'])
-def predict():
+def predict_many():
     request_data = request.get_json()
-    print(request_data)
 
-    return {'success': False}, 500
+    predictions = []
+    model = Model()
+    for row in request_data:
+        errors = validate(row)
+        if len(errors) > 0:
+            return {'record': row, 'errors': errors}, 400
 
+        model_inputs = format_model_inputs(row)
+        predictions.append(model.predict(model_inputs))
+
+    return {'predictions': predictions}
 
 if __name__ == '__main__':
     app.run(debug=True)
